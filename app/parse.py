@@ -38,9 +38,9 @@ def write_quotes_to_csv(quotes: [Quote], output_csv_path: str) -> None:
         writer.writerows([astuple(quote) for quote in quotes])
 
 
-def check_next_page(soup: BeautifulSoup) -> bool:
+def check_next_page(soup: BeautifulSoup) -> None | str:
     next_page = soup.select_one(".next > a")
-    return next_page["href"] if next_page else False
+    return next_page["href"] if next_page else None
 
 
 def parse_site() -> list[Quote]:
